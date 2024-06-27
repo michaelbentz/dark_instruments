@@ -1,7 +1,8 @@
-pub use crate::dark_instruments::Args;
-pub use crate::dark_instruments::DarkInstruments;
+use std::path::PathBuf;
 
-mod dark_instruments;
+use crate::adb::Adb;
+use crate::error::AdbError;
+
 mod process;
 mod adb;
 mod key_code;
@@ -44,3 +45,26 @@ pub mod toolkit {
 
 #[cfg(test)]
 mod tests;
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct Args {
+    pub adb_path: Option<PathBuf>,
+}
+
+#[derive(Clone)]
+pub struct DarkInstruments {
+    pub args: Args,
+}
+
+impl DarkInstruments {
+    pub fn new(args: Args) -> Self {
+        DarkInstruments { args }
+    }
+
+    pub fn adb(&self, target: Option<String>) -> Result<Adb, AdbError> {
+        Adb::new(
+            self.args.adb_path.clone(),
+            target,
+        )
+    }
+}

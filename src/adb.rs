@@ -130,9 +130,8 @@ impl Adb {
     pub(crate) fn have_active_target(&self) -> bool {
         match self.targets() {
             Some((output, _)) => {
-                let matched_lines = output.lines().filter(|line|
-                    line.trim().ends_with("device") &&
-                        line.split_whitespace().count() > 1
+                let matched_lines = output.lines().filter(
+                    |line| line.trim().ends_with("device") && line.split_whitespace().count() > 1
                 );
                 matched_lines.take(2).count() == 1
             }
@@ -205,7 +204,7 @@ impl Adb {
         ) {
             Some((output, _)) => {
                 output.contains("mInputShown=true")
-            },
+            }
             None => false
         }
     }
