@@ -10,10 +10,10 @@ fn test_dark_instruments_adb() {
     let result = dark_instruments.adb(None);
     match result {
         Ok(adb) => {
-            println!("Have ADB {:?}", adb)
+            println!("Have {:?}", adb)
         }
         Err(err) => {
-            println!("AdbError {}", err)
+            println!("{err}")
         }
     }
 }
@@ -22,10 +22,12 @@ fn test_dark_instruments_adb() {
 fn test_adb() {
     match Adb::new(None, None) {
         Ok(adb) => {
+            println!("Have {:?}", adb);
+            println!("Active target: {:?}", adb.have_active_target());
             assert!(adb.have_active_target());
         }
         Err(err) => {
-            println!("AdbError {err}")
+            println!("{err}")
         }
     }
 }
