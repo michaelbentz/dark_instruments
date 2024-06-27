@@ -1,0 +1,11 @@
+[package]
+name = "dark_instruments"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+md-5 = "0.10.6"
+rusty-tesseract = "1.1.10"
+image = "0.25.1"
+which = "6.0.1"
